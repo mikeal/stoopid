@@ -1,0 +1,62 @@
+# stoopid -- Loggers are stupid and I'm resentful that I had to write this.
+
+## Install
+
+<pre>
+  npm install stoopid
+</pre>
+
+Or from source:
+
+<pre>
+  git clone git://github.com/mikeal/stoopid.git 
+  cd stoopid
+  npm link
+</pre>
+
+## Usage
+
+```javascript
+Loggers are stupid and I'm resentful that I had to write this.
+stoopid.log('I am a robot', {prop:'value'})
+```
+
+The stoopid module exports itself as an instance of `Logger` with the namespace `"process"`.
+
+You can create child logger objects with new namespaces with the `.logger(name)` method.
+
+```
+var logger = require('stoopid').logger('myModuleName')
+```
+
+A logger object supports all the same methods that the `console` object in node supports and has a nearly identical API. It also supports all the methods necessary to be enabled as a logger in `socket.io`.
+
+console logging is enabled by default.
+
+## Logger(name)
+
+Base logger object.
+
+### stoopid API
+
+* Logger.logger(name) - Create a new instance of logger with this logger as it's parent.
+* Logger.addHandler(handler, options) - Add a handler, `"console"` and `"file"` are supported.
+* Logger.silly(arg1, arg2, ...) - Logs at level `"silly"` or `10` 
+* Logger.verbose(arg1, arg2, ...): - Logs at level `"verbose"` or `100`
+* Logger.debug(arg1, arg2, ...): - Logs at level `"info"` or `200`
+* Logger.info(arg1, arg2, ...): - Logs at level `"info"` or `300`
+* Logger.warn(arg1, arg2, ...): - Logs at level `"warn"` or `400`
+* Logger.error(arg1, arg2, ...): - Logs at level `"error"` or `500`
+
+### console API
+
+All the additional methods necessary to be used as a replacement for node.js' global console object are also supported.
+
+* Logger.log(arg1, arg2, ...) - Logs at level `"info"` or `300`.
+* Logger.dir(arg1, arg2, ...) - Logs at level `"info"` or `300`.
+* Logger.time(label) - Mark a timer. http://nodejs.org/api/stdio.html#console.time
+* Logger.timeEnd(label) - Finish timer, record output. http://nodejs.org/api/stdio.html#console.timeEnd
+* Logger.trace(label) - Log at `"error"` level a stack trace to stderr in the current position. http://nodejs.org/api/stdio.html#console.trace
+* Logger.assert(expression) - http://nodejs.org/api/stdio.html#console.assert
+
+
