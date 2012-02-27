@@ -17,7 +17,6 @@ Or from source:
 ## Usage
 
 ```javascript
-Loggers are stupid and I'm resentful that I had to write this.
 stoopid.log('I am a robot', {prop:'value'})
 ```
 
