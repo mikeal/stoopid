@@ -7,9 +7,9 @@ var globals = {}
   , levels = 
     { silly: 10
     , verbose: 100
-    , info: 200
-    , warn: 300
-    , debug: 400
+    , debug: 200
+    , info: 300
+    , warn: 400
     , error: 500
     }
   , rlevels = {}
@@ -122,7 +122,7 @@ Logger.prototype.trace = function(label) {
   err.name = 'Trace'
   err.message = label || ''
   Error.captureStackTrace(err, arguments.callee)
-  this.error(err.stack);
+  this.error(err.stack)
 }
 Logger.prototype.assert = function (expression) {
   if (!expression) {
