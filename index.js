@@ -145,6 +145,15 @@ Logger.prototype.addHandler = function (handler, options) {
 
 module.exports = new Logger('process')
 module.exports.addHandler('console')
-
+module.exports.enableLogref = function () {
+  var logref = require('logref')
+  process.logging = function (name) {
+    var log = module.exports.logger(name)
+    var logger = function (str, ctx) {
+      log.info(logref.formatter(str, ctx))
+    }
+    return logger
+  }
+}
 
 
